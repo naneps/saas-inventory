@@ -9,7 +9,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.3.4"
+    "bootstrap": "^4.6.2",
+    "camelcase-keys": "^8.0.2",
+    "jquery": "^3.7.0",
+    "jquery.nicescroll": "^3.7.6",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4",
+    "pinia": "^2.1.6",
+    "popper.js": "^1.16.1",
+    "snakecase-keys": "^5.4.5",
+    "vee-validate": "^4.11.3",
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.4"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",

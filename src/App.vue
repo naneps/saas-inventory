@@ -1,30 +1,57 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <router-view v-if="!isAuthenticated"></router-view>
+  <div v-else class="main-wrapper container">
+    <Navbar></Navbar>
+    <div class="main-content">
+      <router-view></router-view>
+    </div>
+    <footer class="main-footer">
+      <div class="footer-left">
+        Copyright &copy; 2023
+        <div class="bullet"></div>
+        Created <a href="https://nauv.al/">Griyatani</a>
+      </div>
+      <div class="footer-right">{{ version }}</div>
+    </footer>
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
+<script setup>
+import Navbar from "@/components/Navbar.vue";
+import { useAuthStore } from "@/store/modules/auth-store";
+import { ref, watch } from "vue";
+import { useRouter } from "vue-router"; // Import the useRouter function
+const authStore = useAuthStore();
+const user = authStore.user;
+
+// Create a ref to store the isLoggedIn status
+const isAuthenticated = ref(authStore.isAuthenticated);
+
+const login = () => {
+  authStore.login({ username: "exampleUser" });
+};
+
+const logout = () => {
+  authStore.logout();
+};
+
+// Watch the user and update isAuthenticated
+watch(
+  () => authStore.user,
+  (newUser) => {
+    isAuthenticated.value = !!newUser; // Update isAuthenticated based on the presence of a user
+  }
+);
+
+// Get the router instance using useRouter
+const router = useRouter();
+
+// Watch the isAuthenticated state and redirect when true
+watch(isAuthenticated, (newValue) => {
+  if (newValue) {
+    router.push("/"); // Change "/authenticated-route" to your desired route
+  } else {
+    router.push("/login");
+  }
+});
+</script>

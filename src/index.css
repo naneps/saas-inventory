@@ -1,0 +1,10 @@
+@import "./assets//bootstrap-4.3.1-dist/css/bootstrap.min.css";
+@import "./assets//bootstrap-4.3.1-dist/css/bootstrap.css";
+@import "./assets//bootstrap-4.3.1-dist/css/bootstrap-grid.css";
+@import "./assets//bootstrap-4.3.1-dist/css/bootstrap-grid.min.css";
+@import "./assets//bootstrap-4.3.1-dist/css/bootstrap-reboot.css";
+@import "./assets//bootstrap-4.3.1-dist/css/bootstrap-reboot.min.css";
+@import "./assets/css/style.css";
+@import "./assets/css/components.css";
+@import url("https://use.fontawesome.com/releases/v5.7.2/css/all.css");
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap");
