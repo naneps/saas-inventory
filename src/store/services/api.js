@@ -9,7 +9,21 @@ const Api = {
     axios.defaults.headers.post["Content-Type"] = "multipart/form-data";
     axios.defaults.headers.common.Authorization =
       "Bearer " + Cookies.get("token");
+
+    // Add an interceptor to camelCase response data
+    axios.interceptors.response.use(
+      (response) => {
+        if (response.data) {
+          response.data = camelcaseKeys(response.data, { deep: true });
+        }
+        return response;
+      },
+      (error) => {
+        return Promise.reject(error);
+      }
+    );
   },
+
   setAccessControl() {
     axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
     axios.defaults.headers.common["Cache-Control"] = "no-cache, private";

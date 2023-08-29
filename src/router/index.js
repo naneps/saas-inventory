@@ -60,6 +60,15 @@ const routes = [
       icon: "fas fa-user-md", // Font Awesome icon class
     },
   },
+  {
+    name: "Produk",
+    path: "/produk",
+    meta: {
+      title: "Produk",
+      icon: "fas fa-box-open", // Font Awesome icon class
+    },
+    component: () => import("@/pages/product/ProductsPage.vue"),
+  },
 ];
 const router = createRouter({
   history: createWebHashHistory(),

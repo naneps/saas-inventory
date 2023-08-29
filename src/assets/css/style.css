@@ -3197,13 +3197,13 @@ pre {
 }
 
 .main-wrapper-1 .section .section-header {
-  margin-left: -30px;
-  margin-right: -30px;
+  /* margin-left: -30px;
+  margin-right: -30px; */
   margin-top: -10px;
   border-radius: 0;
   border-top: 1px solid #f9f9f9;
-  padding-left: 35px;
-  padding-right: 35px;
+  /* padding-left: 35px;
+  padding-right: 35px; */
 }
 
 @media (max-width: 575.98px) {
@@ -3952,8 +3952,8 @@ body:not(.sidebar-mini)
     display: block;
   }
   .main-content {
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
     width: 100% !important;
   }
   .main-footer {

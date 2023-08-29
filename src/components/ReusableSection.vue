@@ -8,11 +8,6 @@
       <BreadCrumb></BreadCrumb>
     </div>
     <div class="section-body">
-      <slot name="body">
-        <!-- Use slot to allow custom body content -->
-        <h2 class="section-title">{{ subTitle }}</h2>
-        <p class="section-lead">{{ leadText }}</p>
-      </slot>
       <div class="card">
         <div class="card-header">
           <h4><i class="fas fa-columns"></i> {{ cardTitle }}</h4>
@@ -40,6 +35,11 @@ const { props } = defineProps({
 });
 </script>
 
-<style>
+<style scoped>
 /* Your styles here */
+.section {
+  padding: 0px 0 !important;
+  background-color: aqua !important;
+  margin: 0px !important;
+}
 </style>
