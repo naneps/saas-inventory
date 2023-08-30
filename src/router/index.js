@@ -52,7 +52,7 @@ const routes = [
 
   {
     name: "Dokter",
-    path: "/dokter",
+    path: "/doctor",
     component: () =>
       import(/* webpackChunkName: "dokter" */ "@/views/Dokter.vue"),
     meta: {
@@ -62,12 +62,23 @@ const routes = [
   },
   {
     name: "Produk",
-    path: "/produk",
+    path: "/product",
+    component: () => import("@/pages/product/ProductsPage.vue"),
     meta: {
       title: "Produk",
       icon: "fas fa-box-open", // Font Awesome icon class
     },
-    component: () => import("@/pages/product/ProductsPage.vue"),
+    children: [],
+  },
+  {
+    name: "Tambah Produk",
+    path: "/product/create",
+    component: () => import("@/pages/product/ProductCreatePage.vue"),
+    meta: {
+      title: "Tambah Produk",
+      icon: "fas fa-box-open", // Font Awesome icon class
+      breadcrumb: "Tambah Produk", // Set breadcrumb label
+    },
   },
 ];
 const router = createRouter({
@@ -75,7 +86,6 @@ const router = createRouter({
   routes,
   linkActiveClass: "active",
   scrollBehavior(to, from, savedPosition) {
-    console.log(to, from, savedPosition);
     if (to.hash) {
       return {
         el: to.hash,

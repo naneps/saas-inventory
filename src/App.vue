@@ -1,6 +1,6 @@
 <template>
   <router-view v-if="!isAuthenticated"></router-view>
-  <div v-else class="main-wrapper container">
+  <div v-else class="main-wrapper container-fluid">
     <Navbar></Navbar>
     <div class="main-content">
       <router-view></router-view>

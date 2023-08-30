@@ -8,19 +8,8 @@
       <BreadCrumb></BreadCrumb>
     </div>
     <div class="section-body">
-      <div class="card">
-        <div class="card-header">
-          <h4><i class="fas fa-columns"></i> {{ cardTitle }}</h4>
-        </div>
-        <div class="card-body">
-          <slot></slot>
-          <!-- Default slot for card body content -->
-        </div>
-        <div class="card-footer bg-whitesmoke">
-          <slot name="footer"></slot>
-          <!-- Use slot to allow custom footer content -->
-        </div>
-      </div>
+      <slot></slot>
+      <!-- Default slot for card body content -->
     </div>
   </section>
 </template>
@@ -37,9 +26,4 @@ const { props } = defineProps({
 
 <style scoped>
 /* Your styles here */
-.section {
-  padding: 0px 0 !important;
-  background-color: aqua !important;
-  margin: 0px !important;
-}
 </style>

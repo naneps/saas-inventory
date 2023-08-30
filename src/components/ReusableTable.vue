@@ -1,6 +1,6 @@
 <template>
   <div class="table-responsive">
-    <table class="table table-striped">
+    <table class="table table-striped border">
       <thead>
         <tr>
           <th v-if="selectable">
@@ -17,6 +17,10 @@
               >
             </div>
           </th>
+          <th width="5%" v-if="hasNumber">
+            <center>No.</center>
+          </th>
+
           <th v-for="column in columns" :key="column.key">
             <span v-if="column.align === 'center'" class="text-center">
               <center>
@@ -31,8 +35,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(row, index) in rows" :key="index">
-          <td v-if="selectable">
+        <tr v-for="(row, index) in displayedRows" :key="index" class="border">
+          <td v-if="selectable" width="5%" align="center">
             <div class="custom-checkbox custom-control">
               <input
                 type="checkbox"
@@ -46,6 +50,7 @@
               >
             </div>
           </td>
+          <td align="center" v-if="hasNumber">{{ startIndex + index + 1 }}</td>
           <td v-for="column in columns" :key="column.key" :align="column.align">
             <template v-if="column.type === 'actions'">
               <div class="btn-group btn-group-md">
@@ -75,13 +80,16 @@
 </template>
 
 <script setup>
-import { defineProps, onMounted, ref, watch } from "vue";
+import { computed, defineProps, onMounted, ref, watch } from "vue";
 
 const props = defineProps({
   columns: Array,
   rows: Array,
   selectable: { type: Boolean, default: false },
   selected: Array,
+  hasNumber: { type: Boolean, default: false },
+  currentPage: Number, // Get currentPage from parent
+  pageSize: Number,
 });
 
 const selectAllId = "select-all";
@@ -92,7 +100,7 @@ const getCheckboxId = (index) => `checkbox-${index}`;
 
 onMounted(() => {
   if (props.selected) {
-    selectedRows.value = selected;
+    selectedRows.value = props.selected;
   }
 });
 
@@ -156,6 +164,11 @@ const slugBtn = (action) => {
     return "Detail";
   }
 };
+const startIndex = computed(() => (props.currentPage - 1) * props.pageSize);
+
+const displayedRows = computed(() => {
+  return props.rows.slice(startIndex.value, startIndex.value + props.pageSize);
+});
 </script>
 
 <style scoped>
