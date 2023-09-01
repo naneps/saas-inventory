@@ -1,28 +1,30 @@
 <template>
-  <div>
-    <ReusableSection
-      :title="'Loket Pembayaran'"
-      :subTitle="'Loket Pembayaran'"
-      :leadText="'Loket Pembayaran'"
-      :cardTitle="'Loket Pembayaran'"
-    >
-      <div class="custom-content">
-        <!-- Custom content for card body -->
-      </div>
-      <template #footer>
-        <!-- Custom footer content -->
-      </template>
-    </ReusableSection>
-  </div>
+  <ReusableSection :title="'Loket Pembayaran'">
+    <Row>
+      <Col lg="8">
+        <Card>
+          <template #header>
+            <h4>Form Pembayaran</h4>
+          </template>
+        </Card>
+      </Col>
+      <Col lg="4">
+        <Card>
+          <template #header>
+            <h4>Detail Pembayaran</h4>
+          </template>
+          <!-- make invoice -->
+          <!-- make total -->
+          <!-- make button for print -->
+          <!-- make button for save -->
+        </Card>
+      </Col>
+    </Row>
+  </ReusableSection>
 </template>
 
-<script>
-import ReusableSection from "@/components/ReusableSection.vue";
-export default {
-  components: {
-    ReusableSection,
-  },
-};
+<script setup>
+import { Card, Col, ReusableSection, Row } from "@/components";
 </script>
 
 <style>

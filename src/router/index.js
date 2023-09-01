@@ -1,6 +1,10 @@
 import { useAuthStore } from "@/store/modules/auth-store";
 import { createRouter, createWebHashHistory } from "vue-router";
+import product from "./modules/product";
+import supplier from "./modules/supplier";
 const routes = [
+  ...product,
+  ...supplier,
   {
     meta: {
       title: "Daftar Menu",
@@ -17,11 +21,6 @@ const routes = [
     name: "login",
     component: () => import("@/pages/auth/LoginPage.vue"),
   },
-  //   {
-  //     path: "/register",
-  //     component: () => import("@/pages/auth/RegisterPage.vue"),
-  //   },
-
   {
     name: "Loket Registrasi",
     path: "/registrasi-loket",
@@ -58,26 +57,6 @@ const routes = [
     meta: {
       title: "Dokter",
       icon: "fas fa-user-md", // Font Awesome icon class
-    },
-  },
-  {
-    name: "Produk",
-    path: "/product",
-    component: () => import("@/pages/product/ProductsPage.vue"),
-    meta: {
-      title: "Produk",
-      icon: "fas fa-box-open", // Font Awesome icon class
-    },
-    children: [],
-  },
-  {
-    name: "Tambah Produk",
-    path: "/product/create",
-    component: () => import("@/pages/product/ProductCreatePage.vue"),
-    meta: {
-      title: "Tambah Produk",
-      icon: "fas fa-box-open", // Font Awesome icon class
-      breadcrumb: "Tambah Produk", // Set breadcrumb label
     },
   },
 ];

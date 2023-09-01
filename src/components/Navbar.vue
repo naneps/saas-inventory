@@ -1,7 +1,9 @@
 <template>
   <div class="navbar-bg"></div>
   <nav class="navbar navbar-expand-lg main-navbar">
-    <a href="index.html" class="navbar-brand sidebar-gone-hide">Stisla</a>
+    <a href="index.html" class="navbar-brand sidebar-gone-hide"
+      >Management Inventory</a
+    >
     <div class="navbar-nav">
       <a
         href="#"

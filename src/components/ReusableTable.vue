@@ -133,7 +133,7 @@ const performAction = (action, rowData) => {
     //emit
   } else if (action === "Delete") {
     // Lakukan sesuatu saat tombol Delete ditekan
-  } else if (action === "View Details") {
+  } else if (action === "Detail") {
     // Lakukan sesuatu saat tombol View Details ditekan
   }
 };
@@ -142,7 +142,7 @@ const colorBtn = (action) => {
     return "btn-primary";
   } else if (action === "Delete") {
     return "btn-danger";
-  } else if (action === "View Details") {
+  } else if (action === "Detail") {
     return "btn-success";
   }
 };
@@ -151,7 +151,7 @@ const iconBtn = (action) => {
     return "fas fa-edit";
   } else if (action === "Delete") {
     return "fas fa-trash";
-  } else if (action === "View Details") {
+  } else if (action === "Detail") {
     return "fas fa-eye";
   }
 };
@@ -160,7 +160,7 @@ const slugBtn = (action) => {
     return "Edit";
   } else if (action === "Delete") {
     return "Hapus";
-  } else if (action === "View Details") {
+  } else if (action === "Detail") {
     return "Detail";
   }
 };

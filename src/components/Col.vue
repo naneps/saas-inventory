@@ -8,12 +8,11 @@
 import { computed, defineProps } from "vue";
 
 const props = defineProps({
-  xs: [String, Number], // Lebar pada layar kecil (contoh: "12", "auto")
-  sm: [String, Number], // Lebar pada layar kecil (contoh: "6", "auto")
-  md: [String, Number], // Lebar pada layar sedang
-  lg: [String, Number], // Lebar pada layar besar
+  xs: { type: [String, Number], default: 12 }, // Lebar pada layar kecil (contoh: "12", "auto")
+  sm: { type: [String, Number], default: 12 }, // Lebar pada layar kecil (contoh: "6", "auto")
+  md: { type: [String, Number], default: 12 }, // Lebar pada layar sedang
+  lg: { type: [String, Number], default: 12 }, // Lebar pada layar besar
 });
-
 const colClasses = computed(() => {
   return {
     col: true,
@@ -26,9 +25,4 @@ const colClasses = computed(() => {
 </script>
 
 <style scoped>
-.col {
-  padding: 15px; /* Sesuaikan dengan kebutuhan Anda */
-  box-sizing: border-box;
-  flex-grow: 1;
-}
 </style>
