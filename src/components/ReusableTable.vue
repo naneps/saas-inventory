@@ -20,12 +20,9 @@
           <th width="5%" v-if="hasNumber">
             <center>No.</center>
           </th>
-
           <th v-for="column in columns" :key="column.key">
             <span v-if="column.align === 'center'" class="text-center">
-              <center>
-                {{ column.label }}
-              </center>
+              <center>{{ column.label }}</center>
             </span>
             <span v-else-if="column.align === 'right'" class="text-end">
               {{ column.label }}
@@ -43,7 +40,7 @@
                 :id="getCheckboxId(index)"
                 class="custom-control-input"
                 v-model="selectedRows"
-                :value="index"
+                :value="row"
               />
               <label :for="getCheckboxId(index)" class="custom-control-label"
                 >&nbsp;</label
@@ -51,7 +48,20 @@
             </div>
           </td>
           <td align="center" v-if="hasNumber">{{ startIndex + index + 1 }}</td>
-          <td v-for="column in columns" :key="column.key" :align="column.align">
+          <td
+            v-for="column in columns"
+            :key="column.key"
+            :align="column.align"
+            :width="column.width + '%'"
+          >
+            <template v-if="column.type === 'counter'">
+              <Counter
+                :value="row[column.key]"
+                @update:value="
+                  (value) => updateCounterValue(value, row, column.key)
+                "
+              />
+            </template>
             <template v-if="column.type === 'actions'">
               <div class="btn-group btn-group-md">
                 <button
@@ -78,66 +88,56 @@
     </table>
   </div>
 </template>
-
 <script setup>
-import { computed, defineProps, onMounted, ref, watch } from "vue";
+import { Counter } from "@/components";
+import { computed, defineEmits, defineProps, ref, watch } from "vue";
 
 const props = defineProps({
+  tableId: String, // Add the tableId prop
   columns: Array,
   rows: Array,
   selectable: { type: Boolean, default: false },
-  selected: Array,
   hasNumber: { type: Boolean, default: false },
-  currentPage: Number, // Get currentPage from parent
-  pageSize: Number,
 });
 
-const selectAllId = "select-all";
+const emit = defineEmits();
+
+const selectAllId = `select-all-${props.tableId}`; // Use the tableId to create a unique selectAllId
 const selectAll = ref(false);
 const selectedRows = ref([]);
 
-const getCheckboxId = (index) => `checkbox-${index}`;
-
-onMounted(() => {
-  if (props.selected) {
-    selectedRows.value = props.selected;
-  }
-});
-
-watch(
-  () => props.rows,
-  (newRows) => {
-    selectedRows.value = selectAll.value
-      ? newRows.map((_, index) => index)
-      : [];
-  }
-);
-watch(
-  () => selectedRows.value,
-  (newSelectedRows) => {
-    selectAll.value = newSelectedRows.length === props.rows.length;
-  }
-);
+const getCheckboxId = (index) => `checkbox-${props.tableId}-${index}`; // Use the tableId for checkboxes
 
 const toggleSelectAll = () => {
-  if (selectAll.value) {
-    selectedRows.value = props.rows.map((_, index) => index);
-  } else {
+  if (!selectAll.value) {
     selectedRows.value = [];
+  } else {
+    selectedRows.value = props.rows.map((row) => ({ ...row }));
   }
 };
+const updateCounterValue = (value, row, key) => {
+  row[key] = value;
+  console.log(row);
+};
+
 const performAction = (action, rowData) => {
-  // Lakukan tindakan berdasarkan action yang dipilih
-  if (action === "Edit") {
-    // Lakukan sesuatu saat tombol Edit ditekan
-    //emit
-  } else if (action === "Delete") {
-    // Lakukan sesuatu saat tombol Delete ditekan
-  } else if (action === "Detail") {
-    // Lakukan sesuatu saat tombol View Details ditekan
-  }
+  // Do something based on the selected action
+  // You can emit an event or call a callback function here
 };
+
+watch(
+  () => selectedRows.value,
+  (value) => {
+    if (value.length === props.rows.length) {
+      selectAll.value = true;
+    } else {
+      selectAll.value = false;
+    }
+    emit("onSelect", value);
+  }
+);
 const colorBtn = (action) => {
+  // Return the button color class based on the action
   if (action === "Edit") {
     return "btn-primary";
   } else if (action === "Delete") {
@@ -146,7 +146,9 @@ const colorBtn = (action) => {
     return "btn-success";
   }
 };
+
 const iconBtn = (action) => {
+  // Return the button icon class based on the action
   if (action === "Edit") {
     return "fas fa-edit";
   } else if (action === "Delete") {
@@ -155,7 +157,9 @@ const iconBtn = (action) => {
     return "fas fa-eye";
   }
 };
+
 const slugBtn = (action) => {
+  // Return the button label based on the action
   if (action === "Edit") {
     return "Edit";
   } else if (action === "Delete") {
@@ -164,18 +168,14 @@ const slugBtn = (action) => {
     return "Detail";
   }
 };
-const startIndex = computed(() => (props.currentPage - 1) * props.pageSize);
+
+const startIndex = computed(() => 0);
 
 const displayedRows = computed(() => {
-  return props.rows.slice(startIndex.value, startIndex.value + props.pageSize);
+  return props.rows;
 });
 </script>
 
 <style scoped>
 /* Your table styles here */
 </style>
-
-
-
-
-

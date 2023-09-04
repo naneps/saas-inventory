@@ -120,7 +120,7 @@ export const useRouteStore = defineStore("routeStore", {
       },
       {
         name: "Pasien",
-        path: "/pasien",
+        path: "/patient",
         image: "src/assets/img/menu/pasien.jpg",
       },
       {

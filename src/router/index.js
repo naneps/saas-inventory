@@ -1,10 +1,12 @@
 import { useAuthStore } from "@/store/modules/auth-store";
 import { createRouter, createWebHashHistory } from "vue-router";
+import Patient from "./modules/patient";
 import product from "./modules/product";
 import supplier from "./modules/supplier";
 const routes = [
   ...product,
   ...supplier,
+  ...Patient,
   {
     meta: {
       title: "Daftar Menu",
