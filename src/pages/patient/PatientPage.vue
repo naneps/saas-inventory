@@ -10,7 +10,7 @@
                 type="primary"
                 icon="fas fa-plus"
                 label="Tambah Pasien"
-                @click="patientStore.showModal"
+                @click="$router.push('/patient/create')"
               />
             </div>
           </template>

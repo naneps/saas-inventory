@@ -7,6 +7,7 @@ export { default as Col } from "./Col.vue";
 export { default as Counter } from "./Counter.vue";
 export { default as InputField } from "./InputField.vue";
 export { default as InputSearch } from "./InputSearch.vue";
+export { default as Media } from "./Media.vue";
 export { default as Modal } from "./Modal.vue";
 export { default as Pagination } from "./Pagination.vue";
 export { default as ReusableSection } from "./ReusableSection.vue";

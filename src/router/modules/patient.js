@@ -13,10 +13,11 @@ export default [
   {
     path: "/patient/create",
     name: "PatientCreate",
-    component: () => import("@/views/patient/PatientCreate.vue"),
+    component: () => import("@/pages/patient/FormPatient.vue"),
     meta: {
       layout: "default",
       title: "Tambah Pasien",
+      icon: "fas fa-user-injured",
       middleware: ["auth"],
     },
   },
