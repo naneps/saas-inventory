@@ -42,5 +42,4 @@ import {
 import { usePatientStore } from "@/store/modules/patient-store";
 const patientStore = usePatientStore();
 </script>
-<style >
-</style>
+<style></style>
