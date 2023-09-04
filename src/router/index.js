@@ -3,10 +3,12 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import Patient from "./modules/patient";
 import product from "./modules/product";
 import supplier from "./modules/supplier";
+import counter from "./modules/counter";
 const routes = [
   ...product,
   ...supplier,
   ...Patient,
+  ...counter,
   {
     meta: {
       title: "Daftar Menu",
